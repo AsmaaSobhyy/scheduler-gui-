@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
-
+num=1
 #-------------------------------------initializing window-----------------#
 class Example(QWidget):
     
@@ -18,6 +18,8 @@ class Example(QWidget):
         self.setWindowTitle('scheduler')       
     
         self.show()
+
+ 
 #---------------------------popUp that gets the type--------------------#
 def getType(self):
     items = ("FCFS","SJF Preemptive","SJF Non Preemptive","Priority Preemptive","Priority Non Preemptive","round robin")
@@ -28,9 +30,56 @@ def getType(self):
 #-------------------------------gets the number of processes---------------------------------#
 
 def numberOfProcess(self):
-    i, okPressed = QInputDialog.getInt(self, "Get integer","number of processes:",0, 0, 100, 1)
+    i, okPressed = QInputDialog.getInt(self, "Get integer","number of processes:",1, 0, 100, 1)
     if okPressed:
         return(i)
+
+#-----------------------priority----------------------------------#
+def priority(self):
+    process = []
+    final=[]
+    for j in range (0,num):
+        arr, okPressed = QInputDialog.getInt(self, "Get integer",f"process {j} arrive time:",0, 0, 100, 1)
+        burst, okPressed = QInputDialog.getInt(self, "Get integer",f"process {j} burst timt:",0, 0, 100, 1)
+        prior, okPressed = QInputDialog.getInt(self, "Get integer",f"process {j} priority:",0, 0, 100, 1)
+        process.append({'arr':arr,'burst':burst,'prior':prior})
+    sortedProcess = sorted(process, key=lambda k: k['arr'])
+    start=0
+    current = 0
+    k=0
+    f=0
+    imp = sortedProcess[0]
+    for m in range (0,num):
+        for n in range(0,num):
+            if (sortedProcess[m]['arr'] <= current) and (sortedProcess[n]['arr']<=current) :    
+                if sortedProcess[m]['prior'] < sortedProcess[n]['prior']:
+                    #final.append(sortedProcess[m])
+                    imp = sortedProcess[m]
+                    k=m
+                    #current = current + sortedProcess[m]['burst']
+                    
+                    
+                else:
+                    imp = sortedProcess[n]
+                    k=n
+                    #final.append(sortedProcess[m])
+                    #current = current + sortedProcess[n]['burst']
+            else :
+                    imp = sortedProcess[m]     
+        final.append(imp)
+        final[f]['number']=k
+        f=f+1
+        current=current +imp['burst']
+        #del sortedProcess[k]
+    print(final)        
+    for g in range(0,num): 
+        k=final[g]['number']      
+        button = QPushButton(f'process{k}', w)
+        button.move(start,10)
+        x=5*sortedProcess[g]['burst']
+        button.resize(100,20)
+        start= start+100
+        button.show()       
 
 #------------------------type button------------------------------#
 #@pyqtSlot()
@@ -50,6 +99,7 @@ def ontype(self):
 
         elif typ == 'Priority Non Preemptive':
                 print("Priority Non Preemptive fn here")
+                priority(w)
 
         elif typ == 'round robin':
                 print("round robin fn here")
@@ -58,6 +108,7 @@ def ontype(self):
 #----------------------------count button--------------------------------------#
 #@pyqtSlot()
 def oncount(self):
+        global num 
         num = numberOfProcess(w)
         return num
 
@@ -69,9 +120,14 @@ if __name__ == '__main__':
     w =  Example()
 
     typeButton = QPushButton('type button', w)
+    countButton = QPushButton('count button', w)
     typeButton.move(100,70)
+    countButton.move(100,90)
     typeButton.clicked.connect(ontype)
+    countButton.clicked.connect(oncount)
     typeButton.show()
+    countButton.show()
+    
 
     
     sys.exit(app.exec_())
