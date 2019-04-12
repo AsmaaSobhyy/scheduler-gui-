@@ -14,7 +14,7 @@ class Example(QWidget):
         
     def initUI(self):
         
-        self.setGeometry(300, 300, 300, 220)
+        self.setGeometry(500, 500, 500, 500)
         self.setWindowTitle('scheduler')       
     
         self.show()
@@ -26,7 +26,7 @@ def getType(self):
     item, okPressed = QInputDialog.getItem(self, "Get item","scheduler type:", items, 0, False)
     if okPressed and item:
         return(item)
-
+#------------------------------------------------------------------------------
 #-------------------------------gets the number of processes---------------------------------#
 
 def numberOfProcess(self):
@@ -42,35 +42,21 @@ def priority(self):
         arr, okPressed = QInputDialog.getInt(self, "Get integer",f"process {j} arrive time:",0, 0, 100, 1)
         burst, okPressed = QInputDialog.getInt(self, "Get integer",f"process {j} burst timt:",0, 0, 100, 1)
         prior, okPressed = QInputDialog.getInt(self, "Get integer",f"process {j} priority:",0, 0, 100, 1)
-        process.append({'arr':arr,'burst':burst,'prior':prior})
-    sortedProcess = sorted(process, key=lambda k: k['arr'])
+        process.append({'arr':arr,'burst':burst,'prior':prior,"number":j})
+    sortedProcess = sorted(process, key=lambda k: k['prior'])
     start=0
     current = 0
-    k=0
     f=0
     imp = sortedProcess[0]
     for m in range (0,num):
         for n in range(0,num):
-            if (sortedProcess[m]['arr'] <= current) and (sortedProcess[n]['arr']<=current) :    
-                if sortedProcess[m]['prior'] < sortedProcess[n]['prior']:
-                    #final.append(sortedProcess[m])
-                    imp = sortedProcess[m]
-                    k=m
-                    #current = current + sortedProcess[m]['burst']
-                    
-                    
+            if sortedProcess[n]['arr']<=current:
+                if sortedProcess[n] in final:
+                    f=0
                 else:
-                    imp = sortedProcess[n]
-                    k=n
-                    #final.append(sortedProcess[m])
-                    #current = current + sortedProcess[n]['burst']
-            else :
-                    imp = sortedProcess[m]     
-        final.append(imp)
-        final[f]['number']=k
-        f=f+1
-        current=current +imp['burst']
-        #del sortedProcess[k]
+                    final.append(sortedProcess[n])
+                    current +=sortedProcess[n]['burst']
+        
     print(final)        
     for g in range(0,num): 
         k=final[g]['number']      
