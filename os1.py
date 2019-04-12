@@ -57,7 +57,13 @@ def priority(self):
                     final.append(sortedProcess[n])
                     current +=sortedProcess[n]['burst']
         
-    print(final)        
+    #print(final)
+    current=0
+    wt=0
+    for k in range (1,num):
+        wt+=(final[k]['arr']-(current + final[k-1]['burst'] )
+        current += final[k-1]['burst'] 
+    average = wt/num  
     for g in range(0,num): 
         k=final[g]['number']      
         button = QPushButton(f'process{k}', w)
@@ -66,7 +72,6 @@ def priority(self):
         button.resize(100,20)
         start= start+100
         button.show()       
-
 #------------------------type button------------------------------#
 #@pyqtSlot()
 def ontype(self):
