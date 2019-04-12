@@ -37,7 +37,7 @@ for i in range (1,n):
    wt[i] = wt[i-1] + bt[i-1]
    tat[i] = tat[i-1] + bt[i]
 
-print(" PROCESS\tBURST TIME\tTURN AROUND TIME")
+print(" PROCESS\tBURST TIME\tTURN AROUND TIME\tWaiting Time")
 print()
 for i in range(0,n):
     print(f"      {i}\t\t  {bt[i]}\t\t       {wt[i]}\t\t         {tat[i]}")
