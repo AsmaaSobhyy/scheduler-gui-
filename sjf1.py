@@ -79,5 +79,5 @@ plist.append(Process(3,3,1))
 plist.append(Process(4,4,2))
 plist.append(Process(5,5,8))
 
-SJF(plist,len(plist),1)
+SJF(plist,len(plist),1)#this is preemp for non preemp sjf(plist,len(plist),0)
 print(chart)
