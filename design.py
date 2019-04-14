@@ -17,7 +17,7 @@ class window(QDialog):
 
 
         self.InitWindow()
-
+#---------------------------------------------making buttons and control on geometry--------------------------------# 
     def InitWindow(self):
         self.setWindowTitle(self.title)
         self.setWindowIcon (QtGui.QIcon(self.iconName))
@@ -56,7 +56,7 @@ class window(QDialog):
         self.setLayout(vbox)
 
         self.show()
-
+#---------------------------------------making box to write words-------------------------------------#
     def CreateLayout(self):
         self.groupBox = QGroupBox("what scheduler do you want ?")
         gridLayout = QGridLayout()
@@ -89,7 +89,7 @@ class window(QDialog):
     #    gridLayout.addWidget(button3, 1,1)
 
         self.groupBox.setLayout(gridLayout)
-
+#----------------------------------------making windows of each type----------------------------------------#
 
     def FCFS(self):
         FCFS = QDialog()
@@ -110,7 +110,7 @@ class window(QDialog):
         PRIORITY= QDialog()
         PRIORITY.setModal(True)
         PRIORITY.exec()
-
+#-------------------------------------------------------main-----------------------------------------------------------#
 if __name__=="__main__":
     App = QApplication(sys.argv)
     window = window()
