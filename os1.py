@@ -60,9 +60,9 @@ def priority(self):
     #print(final)
     current=0
     wt=0
-    for k in range (1,num):
-        wt+=(final[k]['arr']-(current + final[k-1]['burst'] )
-        current += final[k-1]['burst'] 
+#     for k in range (1,num):
+#         wt+=(final[k]['arr']-(current + final[k-1]['burst'] )
+#         current += final[k-1]['burst'] 
     average = wt/num  
     for g in range(0,num): 
         k=final[g]['number']      

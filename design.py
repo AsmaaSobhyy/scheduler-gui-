@@ -1,8 +1,12 @@
-from PyQt5.QtWidgets import QApplication, QPushButton, QDialog, QGroupBox, QVBoxLayout, QGridLayout
+from PyQt5.QtWidgets import *
 import sys
 from PyQt5 import QtGui
-from PyQt5.QtCore import QRect
+from PyQt5.QtCore import *
 from PyQt5 import QtCore
+
+num =1
+
+
 
 class window(QDialog):
     def __init__(self):
@@ -89,6 +93,15 @@ class window(QDialog):
     #    gridLayout.addWidget(button3, 1,1)
 
         self.groupBox.setLayout(gridLayout)
+#-----------------------------getting count----------------------#
+    def oncount(self):
+        global num 
+        num, okPressed = QInputDialog.getInt(self, "Get integer","number of processes:",1, 0, 100, 1)
+#-----------------------------------------------------------------------------------------#
+    def getInfo(self):
+        ans, okPressed = QInputDialog.getInt(self, "Get integer",f"process :",0, 0, 100, 1)
+        if okPressed:
+            return(ans)
 #----------------------------------------making windows of each type----------------------------------------#
 
     def FCFS(self):
@@ -108,8 +121,19 @@ class window(QDialog):
 
     def PRIORITY(self):
         PRIORITY= QDialog()
+        PRIORITY.setGeometry(500, 500, 500, 500)
+        countButton = QPushButton('count button', PRIORITY)
+        countButton.clicked.connect(self.oncount)
+        countButton.show()
+        # startButton = QPushButton('start', PRIORITY)
+        # startButton.clicked.connect(priority)
+        # startButton.move(100,90)
+        # startButton.show()
+        # priority(PRIORITY)
         PRIORITY.setModal(True)
         PRIORITY.exec()
+
+
 #-------------------------------------------------------main-----------------------------------------------------------#
 if __name__=="__main__":
     App = QApplication(sys.argv)
