@@ -50,7 +50,7 @@ def ontype(self):
 
         elif typ == 'Priority Preemptive':
                 print("Priority Preemptive fn here")
-                priority(w,True)
+                priority(w,True,num)
 
         elif typ == 'Priority Non Preemptive':
                 print("Priority Non Preemptive fn here")
