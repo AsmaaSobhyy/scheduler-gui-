@@ -1,6 +1,7 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
+from priority import *
 
 num=1
 #-------------------------------------initializing window-----------------#
@@ -33,45 +34,7 @@ def numberOfProcess(self):
     i, okPressed = QInputDialog.getInt(self, "Get integer","number of processes:",1, 0, 100, 1)
     if okPressed:
         return(i)
-
-#-----------------------priority----------------------------------#
-def priority(self):
-    process = []
-    final=[]
-    for j in range (0,num):
-        arr, okPressed = QInputDialog.getInt(self, "Get integer",f"process {j} arrive time:",0, 0, 100, 1)
-        burst, okPressed = QInputDialog.getInt(self, "Get integer",f"process {j} burst timt:",0, 0, 100, 1)
-        prior, okPressed = QInputDialog.getInt(self, "Get integer",f"process {j} priority:",0, 0, 100, 1)
-        process.append({'arr':arr,'burst':burst,'prior':prior,"number":j})
-    sortedProcess = sorted(process, key=lambda k: k['prior'])
-    start=0
-    current = 0
-    f=0
-    imp = sortedProcess[0]
-    for m in range (0,num):
-        for n in range(0,num):
-            if sortedProcess[n]['arr']<=current:
-                if sortedProcess[n] in final:
-                    f=0
-                else:
-                    final.append(sortedProcess[n])
-                    current +=sortedProcess[n]['burst']
-        
-    #print(final)
-    current=0
-    wt=0
-#     for k in range (1,num):
-#         wt+=(final[k]['arr']-(current + final[k-1]['burst'] )
-#         current += final[k-1]['burst'] 
-    average = wt/num  
-    for g in range(0,num): 
-        k=final[g]['number']      
-        button = QPushButton(f'process{k}', w)
-        button.move(start,10)
-        x=5*sortedProcess[g]['burst']
-        button.resize(100,20)
-        start= start+100
-        button.show()       
+    
 #------------------------type button------------------------------#
 #@pyqtSlot()
 def ontype(self):
@@ -87,10 +50,11 @@ def ontype(self):
 
         elif typ == 'Priority Preemptive':
                 print("Priority Preemptive fn here")
+                priority(w,True)
 
         elif typ == 'Priority Non Preemptive':
                 print("Priority Non Preemptive fn here")
-                priority(w)
+                priority(w,False,num)
 
         elif typ == 'round robin':
                 print("round robin fn here")
