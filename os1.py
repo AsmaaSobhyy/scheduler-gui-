@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from priority import *
 from sjfnonpreem import *
+from sjfpreem import *
 
 num=1
 #-------------------------------------initializing window-----------------#
@@ -44,7 +45,8 @@ def ontype(self):
                 print("fcfs function here")
 
         elif typ == 'SJF Preemptive':
-                print("SJF preemptive function here")
+                #print("SJF preemptive function here")
+                SJFP(w,num)
 
         elif typ == 'SJF Non Preemptive':
                 #print("SJF Non Preemptive fn here")
