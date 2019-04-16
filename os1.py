@@ -4,6 +4,7 @@ from PyQt5.QtCore import *
 from priority import *
 from sjfnonpreem import *
 from sjfpreem import *
+from fcfs1 import *
 
 num=1
 #-------------------------------------initializing window-----------------#
@@ -42,7 +43,8 @@ def numberOfProcess(self):
 def ontype(self):
         typ = getType(w)
         if typ == 'FCFS':
-                print("fcfs function here")
+                #print("fcfs function here")
+                FCFS(w,num)
 
         elif typ == 'SJF Preemptive':
                 #print("SJF preemptive function here")
