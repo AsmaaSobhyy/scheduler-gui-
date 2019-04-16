@@ -32,7 +32,8 @@ def FCFS(self,num):
         l.move(start+45,30)
         l.show()
         start= start+100
-        button1.show()  
+        button1.show() 
+         
 
     l1=QLabel(f'average waiting time =  {average}',draw1)
     l1.move(50,100)

@@ -4,7 +4,7 @@ from PyQt5.QtCore import *
 from priority import *
 from sjfnonpreem import *
 from sjfpreem import *
-from fcfs1 import *
+from FCFS import *
 
 num=1
 #-------------------------------------initializing window-----------------#
@@ -88,6 +88,7 @@ if __name__ == '__main__':
     countButton.clicked.connect(oncount)
     typeButton.show()
     countButton.show()
+    
     
 
     
