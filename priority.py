@@ -107,6 +107,10 @@ def priority(self,preemptive,num):
     size=len(final)
     #print(size)
     draw = QDialog()
+    if(preemptive):
+        draw.setWindowTitle("PRIORITY preemptive")
+    else:
+        draw.setWindowTitle("PRIORITY non-preemptive")
     draw.setModal(True)
     
     for g in range(0,size): 

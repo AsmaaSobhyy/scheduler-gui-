@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from priority import *
+from sjfnonpreem import *
 
 num=1
 #-------------------------------------initializing window-----------------#
@@ -46,14 +47,15 @@ def ontype(self):
                 print("SJF preemptive function here")
 
         elif typ == 'SJF Non Preemptive':
-                print("SJF Non Preemptive fn here")
+                #print("SJF Non Preemptive fn here")
+                SJF(w,num)
 
         elif typ == 'Priority Preemptive':
-                print("Priority Preemptive fn here")
+                #print("Priority Preemptive fn here")
                 priority(w,True,num)
 
         elif typ == 'Priority Non Preemptive':
-                print("Priority Non Preemptive fn here")
+                #print("Priority Non Preemptive fn here")
                 priority(w,False,num)
 
         elif typ == 'round robin':
